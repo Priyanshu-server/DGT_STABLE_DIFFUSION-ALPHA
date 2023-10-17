@@ -3,6 +3,9 @@
 ### Inspired By HuggingFace
 ![Hugging Face Image](https://huggingface.co/front/assets/homepage/hugs-mobile.svg)
 
+## Requirements
+- Data Generation Requirements are inside requirements.txt `pip3 install -r requirements.txt`
+
 ### Config.py
 - Update config.py file for specific changes - 
     - Model Name
