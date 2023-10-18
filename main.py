@@ -40,7 +40,13 @@ def main():
                         --checkpointing_steps={CHECKPOINTING_STEPS} \
                         --checkpoints_total_limit={CHECKPOINTS_TOTAL_LIMIT} '
 
-    accelerator_cmd += '--resume_from_checkpoint' if RESUME_FROM_CHECKPOINT else ""
+    if RESUME_FROM_CHECKPOINT != "":
+        accelerator_cmd += ' --resume_from_checkpoint={RESUME_FROM_CHECKPOINT}'
+    
+    if USE_8BIT_ADAM:
+        accelerator_cmd += " --use_8bit_adam"
+
+
     if TRAIN_DATA_DIR == "" and DATASET_NAME:
         accelerator_cmd += f' --dataset_name={DATASET_NAME}'
     elif DATASET_NAME == "" and TRAIN_DATA_DIR:
