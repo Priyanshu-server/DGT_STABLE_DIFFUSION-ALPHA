@@ -3,9 +3,9 @@
 ![Hugging Face Image](https://huggingface.co/front/assets/homepage/hugs-mobile.svg)
 
 ### Tokens
->**ADD ACCESS_TOKEN & UNSPLASH_ACCESS_TOKEN in `config.py`**
->**If you are using the `predownloaded Dataset | HuggingFace Dataset` then avoid adding `UNSPLASH_ACCESS_TOKEN`**
->**`ACCESS_TOKEN` is the token from HuggingFace, so it can download the Hugging Face Dataset | HuggingFace Models**
+-**ADD ACCESS_TOKEN & UNSPLASH_ACCESS_TOKEN in `config.py`**
+-**If you are using the `predownloaded Dataset | HuggingFace Dataset` then avoid adding `UNSPLASH_ACCESS_TOKEN`**
+-**`ACCESS_TOKEN` is the token from HuggingFace, so it can download the Hugging Face Dataset | HuggingFace Models**
 
 ## Requirements
 - Data Generation Requirements are inside requirements.txt `pip3 install -r requirements.txt`
@@ -46,7 +46,10 @@
     - Change value of TRAIN_DATA_DIR = '' & DATASET_NAME = 'HUGGINGFACE_DATA'
 
 #### ONLINE DATASET
-- Working with offline dataset require triggering main.py.
+- Working with offline dataset require triggering app.py.
+>- The Dataset will be Downloaded through a `prompt` or `prompt_file`.
+>   - If using `prompt_file` then add a file in the main_dir or update `prompts.txt`.
+>   - Provide prompts in text like structure. `Cat\nDog\nPrompt3... etc` 
 - But before exectuion, update config.py file
     - Change value of TRAIN_DATA_DIR = '/data_dir/' and DATASET_NAME = ''
 - Command when downloading pictures from unsplash (Update ACESS TOKEN IN CONFIG.PY)
