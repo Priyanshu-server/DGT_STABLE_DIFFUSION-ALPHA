@@ -1,4 +1,7 @@
-## README FILE
+# DGT_STABLE_DIFFUSION-ALPHA
+## Data Generator Trainer Stable Diffusion (alpha verison)
+## Version : 0.0.1
+
 ### Inspired By HuggingFace
 ![Hugging Face Image](https://huggingface.co/front/assets/homepage/hugs-mobile.svg)
 
