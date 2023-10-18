@@ -3,9 +3,9 @@
 ![Hugging Face Image](https://huggingface.co/front/assets/homepage/hugs-mobile.svg)
 
 ### Tokens
--**ADD ACCESS_TOKEN & UNSPLASH_ACCESS_TOKEN in `config.py`**
--**If you are using the `predownloaded Dataset | HuggingFace Dataset` then avoid adding `UNSPLASH_ACCESS_TOKEN`**
--**`ACCESS_TOKEN` is the token from HuggingFace, so it can download the Hugging Face Dataset | HuggingFace Models**
+-ADD ACCESS_TOKEN & UNSPLASH_ACCESS_TOKEN in `config.py`
+-If you are using the `predownloaded Dataset | HuggingFace Dataset` then avoid adding `UNSPLASH_ACCESS_TOKEN`
+-`ACCESS_TOKEN` is the token from HuggingFace, so it can download the Hugging Face Dataset | HuggingFace Models
 
 ## Requirements
 - Data Generation Requirements are inside requirements.txt `pip3 install -r requirements.txt`
@@ -16,7 +16,7 @@
     - Dataset Address
     - ACCESS Token
     - etc.
-    - 
+    
 ### Main.py File
 - It is the driver file, execute only Main.py file directly to train the Stable Diffusion Model
 
