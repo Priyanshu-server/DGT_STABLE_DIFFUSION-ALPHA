@@ -27,6 +27,7 @@
 - It is file to download data, but if you pass the arg - train True then it will automatically trigger main.py file in order to train the model on the downloaded data.
 
 ### Things to keep in mind
+- Always delete data_dir/ when retrying to generate data for training.
 - Working with online data (COMMENT TRAIN_DATA_DIR) and DATASET_NAME = 'ONLINE_DATASET_NAME'
 - Working with offline data (COMMENT DATASET_NAME) and TRAIN_DATA_DIR = 'data_dir/'
     - Format -> Data_dir/
