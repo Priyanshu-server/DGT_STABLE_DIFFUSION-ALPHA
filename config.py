@@ -1,6 +1,9 @@
 ACCESS_TOKEN = ""
 UNSPLASH_ACCESS_TOKEN = ""
 
+# ACCELERATE
+SET_ACCELERATE = 'default'
+
 # DICTS
 MODEL_NAME = 'OFA-Sys/small-stable-diffusion-v0'
 DATASET_NAME = 'lambdalabs/pokemon-blip-captions'

@@ -18,8 +18,12 @@ diffuser_clone = Command(name = "Clone Diffuser",
 install_diffuser = Command(name = "Diffuser Installation",
                            cmd = "pip3 install ./diffusers",
                            help = "Install the diffuser library from diffuser_clone")
+set_acc = Command(name = "Accelerate Precision fp16",
+                                 cmd = "accelerate config",
+                                 help = "It helps to initialize the accelerate config file and put precision to fp16")
 
-set_acc_precision_fp16 = Command(name = "Accelerate Precision fp16",
+
+set_acc__default_precision_fp16 = Command(name = "Accelerate Precision fp16",
                                  cmd = "accelerate config default --mixed_precision fp16",
                                  help = "It helps to initialize the accelerate config file and put precision to fp16")
                                 #  cmd = "accelerate config default --mixed_precision fp16",

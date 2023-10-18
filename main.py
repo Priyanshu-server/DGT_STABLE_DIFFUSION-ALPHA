@@ -1,6 +1,6 @@
 import os
 from lx_cmd import (install_deps,diffuser_clone,
-                    install_diffuser,set_acc_precision_fp16)
+                    install_diffuser,set_acc,set_acc__default_precision_fp16)
 from config import *
 
 
@@ -9,7 +9,12 @@ def main():
     if not os.path.exists("diffusers/"):
         os.system(command=diffuser_clone.cmd)
     os.system(command=install_diffuser.cmd)
-    os.system(command=set_acc_precision_fp16.cmd)
+
+    # Accelerator Config
+    if SET_ACCELERATE.lower() == 'default':
+        os.system(command=set_acc__default_precision_fp16.cmd)
+    else:
+        os.system(command=set_acc.cmd)
 
     from huggingface_hub import login
     login(ACCESS_TOKEN)
