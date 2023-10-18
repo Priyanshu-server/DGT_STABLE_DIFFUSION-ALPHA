@@ -1,7 +1,0 @@
-image,text
-/home/hestabit/stable_diffusion_pipeline/test/training_txt_to_img/train/0_f5411ffe-d8eb-45fd-b77b-c6be38a9a2aa_img.png,cat
-/home/hestabit/stable_diffusion_pipeline/test/training_txt_to_img/train/1_6e87955e-e793-4f03-a844-33a76caef9cc_img.png,cat
-/home/hestabit/stable_diffusion_pipeline/test/training_txt_to_img/train/0_17f1c3b2-3779-45db-a865-afebd849bd85_img.png,cat with rat
-/home/hestabit/stable_diffusion_pipeline/test/training_txt_to_img/train/1_432401f4-f581-4113-b906-df5b011a3a12_img.png,cat with rat
-/home/hestabit/stable_diffusion_pipeline/test/training_txt_to_img/train/0_ef33392b-113c-4291-a2d5-e954762cb8a4_img.png,rats
-/home/hestabit/stable_diffusion_pipeline/test/training_txt_to_img/train/1_fea3e94e-cafd-4abc-944f-bc2400e8edc6_img.png,rats

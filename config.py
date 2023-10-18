@@ -3,8 +3,8 @@ UNSPLASH_ACCESS_TOKEN = "GVC_0N1u-vKofzEFj38pWYtIF1F69aK7nZb90oi_vK0"
 
 # DICTS
 MODEL_NAME = 'OFA-Sys/small-stable-diffusion-v0'
-# DATASET_NAME = 'lambdalabs/pokemon-blip-captions'
-DATASET_NAME = ''
+DATASET_NAME = 'lambdalabs/pokemon-blip-captions'
+#DATASET_NAME = ''
 OUTPUT_DIR = 'OFAsd-pokemon-model'
 
 #Image
@@ -22,7 +22,8 @@ LEARNING_RATE = 1e-05
 MAX_GRAD_NORM = 1
 LR_SCHEDULER = "constant"
 LR_WARMUP_STEPS = 0
-TRAIN_DATA_DIR = 'train/'
+TRAIN_DATA_DIR = ''
+#TRAIN_DATA_DIR = 'train/'
 
 
 #Checkpointing

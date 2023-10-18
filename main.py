@@ -37,12 +37,13 @@ def main():
 
     accelerator_cmd += '--resume_from_checkpoint' if RESUME_FROM_CHECKPOINT else ""
     if TRAIN_DATA_DIR == "" and DATASET_NAME:
-        accelerator_cmd += ' --dataset_name={DATASET_NAME}'
+        accelerator_cmd += f' --dataset_name={DATASET_NAME}'
     elif DATASET_NAME == "" and TRAIN_DATA_DIR:
-        accelerator_cmd += ' --train_data_dir={TRAIN_DATA_DIR}'
+        accelerator_cmd += f' --train_data_dir={TRAIN_DATA_DIR}'
     else:
         print("Something is worng in file locations ! Check Readme.md")
         exit()
+    print("\n\n\n\n\n",accelerator_cmd,"\n\n\n\n\n")
 
 
     os.system(accelerator_cmd)
