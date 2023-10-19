@@ -78,6 +78,11 @@ def gen_accelerator_dreambooth():
                     --num_class_images={NUM_CLASS_IMGS} \
                     --max_train_steps={MAX_TRAIN_STEPS} \
                     --class_data_dir={CLASS_DIR} "
+    
+    if WITH_PRIOR_PRESERVATION:
+         if CLASS_DIR == "" or CLASS_PROMPT == "": raise ValueError("CLASS Args in Config.py \
+                                                                     should be Valid for prior preservation")
+         accelerate_cmd += f" --with_prior_preservation --prior_loss_weight={PRIOR_LOSS_WEIGHT}"
         
     if RESUME_FROM_CHECKPOINT != "":
             accelerate_cmd += ' --resume_from_checkpoint={RESUME_FROM_CHECKPOINT}'
@@ -85,7 +90,7 @@ def gen_accelerator_dreambooth():
     if USE_8BIT_ADAM:
             try:
                 os.system(command=install_bitsandbytes.cmd)
-                accelerate_cmd += " --use_8bit_adam --with_prior_preservation --prior_loss_weight=1.0"
+                accelerate_cmd += " --use_8bit_adam "
             except:
                 print("Something Went wrong while installing bitsandbytes")
                 print("For more information execute `python -m bitsandbytes`")
