@@ -10,6 +10,7 @@ from google_search import get_google_img_links
 from tqdm import tqdm
 import json
 from main import main
+from config import *
 
 #html5lib must install
 
@@ -53,6 +54,7 @@ class GetImage(GetImageAbstract):
     def _read_prompt_file(self,prompt_file):
         with open(prompt_file,'rb') as f:
             lines = [line.decode('utf-8').strip() for line in f.readlines()]
+            lines = ['+'.join(line.split(" ")) for line in lines]
             print(lines)
         return lines
     
@@ -73,6 +75,7 @@ class GetImage(GetImageAbstract):
             for prompt in tqdm(prompts):
                 self.get_image(prompt,verbose = self.verbose)
         elif self.prompt:
+            self.prompt = '+'.join(self.prompt.split(" "))
             self.get_image(self.prompt,verbose = self.verbose)
         else:
             print("Enter prompt_file or prompt inside args")
@@ -148,6 +151,31 @@ class GetImage(GetImageAbstract):
         y = (new_height - height) // 2
         final_image.paste(resized_image, (x, y))
         return final_image
+    
+class GetDreamboothImage(GetImage):
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.class_dir = CLASS_DIR
+        self.class_prompt = CLASS_PROMPT
+
+    def get_image(self,prompt,verbose=True):
+        prompt = '+'.join(prompt.split(' '))
+        super().get_image(prompt,verbose)
+
+    def get_all_images(self):
+        prompt = self.prompt
+        verbose = self.verbose
+        self.get_image(prompt,verbose)
+        
+
+    def save_img(self,response,name,prompt):
+        img = Image.open(BytesIO(response.content)).convert('RGB')
+
+        if self.size and self.site == 'google':
+            img = self.resize_with_padding(img,self.size)
+        address = os.path.join(self.data_dir, name)
+        img.save(address)
+    
 
 
 if __name__ == "__main__":
@@ -176,9 +204,13 @@ if __name__ == "__main__":
         print("Select unsplash size from : ",unsplash_sized) 
         exit()
     ## Triggering Main GetImage Class
+    '''
     get_image  = GetImage(**args_dict)
     get_image.run_prompts()
     print(args_dict['train'])
     if args_dict.get('train',0) and args_dict['train'] == 'yes':
         main()
+    '''
+    get_image = GetDreamboothImage(**args_dict)
+    get_image.get_all_images()
 

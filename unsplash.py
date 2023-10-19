@@ -10,6 +10,7 @@ headers = {'Authorization':autherization_header}
 
 def get_unsplash_img_links(num_imgs,size,prompt):
     API = f"https://api.unsplash.com/search/photos?page=1&query={prompt}"
+    print(API)
     response = requests.get(API,headers=headers)
     response = response.json()
     links = []

@@ -2,6 +2,9 @@
 ## Data Generator Trainer Stable Diffusion (alpha verison)
 ## Version : 0.0.1
 
+### ? functionality  remaining  ? { GENERATE Class_dir data automatically by get_image script }? [ADD only if necessary]
+
+
 ### Inspired By HuggingFace
 ![Hugging Face Image](https://huggingface.co/front/assets/homepage/hugs-mobile.svg)
 

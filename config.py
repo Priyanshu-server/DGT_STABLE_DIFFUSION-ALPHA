@@ -1,5 +1,5 @@
-ACCESS_TOKEN = ""
-UNSPLASH_ACCESS_TOKEN = ""
+ACCESS_TOKEN = "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"
+UNSPLASH_ACCESS_TOKEN = "GVC_0N1u-vKofzEFj38pWYtIF1F69aK7nZb90oi_vK0"
 
 # ACCELERATE
 SET_ACCELERATE = 'default'
@@ -36,9 +36,14 @@ CHECKPOINTS_TOTAL_LIMIT = 5
 RESUME_FROM_CHECKPOINT = ""
 
 #OPTIMIZATION
-USE_8BIT_ADAM = False
+## Do not use if sudo if not allowed or the GPU have enough RAM
+### Only use for large models with <=16GiB GPU
+USE_8BIT_ADAM = False 
 
-
-
-
-
+# DreamBooth Configs
+CLASS_DIR = "class_dir"
+CLASS_PROMPT = "class prompt"
+INSTANCE_PROMPT = "instance prompt"
+INSTANCE_DICT = "train/"
+USE_DREAM_BOOTH = True
+NUM_CLASS_IMGS = 5
