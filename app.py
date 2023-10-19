@@ -200,7 +200,6 @@ if __name__ == "__main__":
 
     if TRAIN:
         main()
-    
-    # get_image = GetDreamboothImage()
-    # get_image.get_all_images()
-
+        
+        
+        

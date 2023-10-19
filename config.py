@@ -38,7 +38,7 @@ RESUME_FROM_CHECKPOINT = ""
 #OPTIMIZATION
 ## Do not use if sudo if not allowed or the GPU have enough RAM
 ### Only use for large models with <=16GiB GPU
-USE_8BIT_ADAM = False 
+USE_8BIT_ADAM = False
 
 # DreamBooth Configs
 USE_DREAM_BOOTH = True

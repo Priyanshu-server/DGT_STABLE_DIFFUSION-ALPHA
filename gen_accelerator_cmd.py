@@ -44,14 +44,14 @@ def gen_accelerator_text_img():
     else:
         print("Something is wrong in file locations ! Check Readme.md")
         exit(0)
-    print("\n\n\n\n\n",accelerator_cmd,"\n\n\n\n\n")
+    print("\n\n\n\n\n",accelerator_cmd,"\n\n\n\n\n",sep = "\n")
 
     return accelerator_cmd
 
 def gen_accelerator_dreambooth():
     # checking variables
     if INSTANCE_DICT == "" : raise ValueError
-    if not os.path.exists(INSTANCE_DICT): raise NotADirectoryError
+    if not os.path.exists(INSTANCE_DICT): raise NotADirectoryError("Make a directory with the same name")
 
     # Getting Data
     if len(os.listdir(INSTANCE_DICT)) == 0:
