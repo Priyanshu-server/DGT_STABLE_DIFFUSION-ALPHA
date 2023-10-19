@@ -10,7 +10,8 @@ from google_search import get_google_img_links
 from tqdm import tqdm
 import json
 from main import main
-from config import *
+from data_config import *
+from config import USE_DREAM_BOOTH,CLASS_PROMPT,CLASS_DIR
 
 #html5lib must install
 
@@ -33,7 +34,6 @@ class GetImageAbstract(ABC):
     @abstractmethod
     def resize_with_padding(self,image : Image.Image,target_size:tuple) -> Image.Image:
         pass
-
 
 class GetImage(GetImageAbstract):
     def __init__(self,prompt = None,data_dir = "data",prompt_file = None,
@@ -70,7 +70,7 @@ class GetImage(GetImageAbstract):
                 jsonl_file.write(json.dumps(json_obj) + '\n')
 
     def run_prompts(self):
-        if self.prompt_file:
+        if self.prompt_file and self.prompt_file != "":
             prompts = self._read_prompt_file(self.prompt_file)
             for prompt in tqdm(prompts):
                 self.get_image(prompt,verbose = self.verbose)
@@ -153,10 +153,11 @@ class GetImage(GetImageAbstract):
         return final_image
     
 class GetDreamboothImage(GetImage):
-    def __init__(self,*args,**kwargs):
-        super().__init__(*args,**kwargs)
-        self.class_dir = CLASS_DIR
-        self.class_prompt = CLASS_PROMPT
+    def __init__(self,prompt = None,data_dir = "data",prompt_file = None,
+                 num_imgs = 0,size = None,verbose = True,site = "Google",
+                 unsplash_size = None,train = False):
+        super().__init__(prompt,data_dir,prompt_file,num_imgs,
+                         size,verbose,site,unsplash_size,train)
 
     def get_image(self,prompt,verbose=True):
         prompt = '+'.join(prompt.split(' '))
@@ -166,7 +167,6 @@ class GetDreamboothImage(GetImage):
         prompt = self.prompt
         verbose = self.verbose
         self.get_image(prompt,verbose)
-        
 
     def save_img(self,response,name,prompt):
         img = Image.open(BytesIO(response.content)).convert('RGB')
@@ -179,38 +179,28 @@ class GetDreamboothImage(GetImage):
 
 
 if __name__ == "__main__":
-    import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-prompt_file',action = 'store',type = str)
-    parser.add_argument('-prompt',action = 'store',type = str)
-    parser.add_argument('-num_imgs',action = 'store', type = int)
-    parser.add_argument('-size',action = 'store',type = int)
-    parser.add_argument('-data_dir',action = 'store',type = str)
-    parser.add_argument('-site',action = 'store',type = str)
-    parser.add_argument('-unsplash_size',action = 'store',type = str)
-    parser.add_argument('-verbose',action = 'store',type = bool)
-    parser.add_argument('-train',action = 'store',type = str)
 
-    args_dict = vars(parser.parse_args())
-    args_dict['size'] = (args_dict['size'],args_dict['size'])
-    args_dict = {key:val for key,val in args_dict.items() if val if not None}
-    print(args_dict)
-    if 'site' not in args_dict or args_dict['site'] not in ('google','unsplash'):
-        args_dict['site'] = 'google'
-        print("Using Google By default / Selected site is not in dataset")
-
-    unsplash_sized = {"raw","full","regular","small","thumb"}
-    if args_dict['site'] == 'unsplash' and args_dict['unsplash_size'] not in unsplash_sized:
-        print("Select unsplash size from : ",unsplash_sized) 
-        exit()
     ## Triggering Main GetImage Class
-    '''
-    get_image  = GetImage(**args_dict)
-    get_image.run_prompts()
-    print(args_dict['train'])
-    if args_dict.get('train',0) and args_dict['train'] == 'yes':
+    if not USE_DREAM_BOOTH:
+        get_image = GetImage(prompt = PROMPT_TEXT, data_dir = DATA_DIR,
+                            prompt_file = PROMPT_FILE, num_imgs = NUM_IMGS,
+                            site = SITE, size = SIZE,
+                            train = TRAIN)
+        get_image.run_prompts()
+        
+    else:
+        ## If using Dreambooth
+        if not PROMPT_TEXT or PROMPT_TEXT == "":
+            raise ValueError("Prompt Required for Dreambooth Data Creation")
+        
+        get_image = GetDreamboothImage(prompt = PROMPT_TEXT, data_dir = DATA_DIR,
+                            prompt_file = "", num_imgs = NUM_IMGS,
+                            site = SITE, size = SIZE,train = TRAIN)
+        get_image.get_all_images()
+
+    if TRAIN:
         main()
-    '''
-    get_image = GetDreamboothImage(**args_dict)
-    get_image.get_all_images()
+    
+    # get_image = GetDreamboothImage()
+    # get_image.get_all_images()
 

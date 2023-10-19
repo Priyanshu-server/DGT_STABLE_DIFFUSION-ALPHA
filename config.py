@@ -7,7 +7,7 @@ SET_ACCELERATE = 'default'
 # DICTS
 MODEL_NAME = 'OFA-Sys/small-stable-diffusion-v0'
 DATASET_NAME = 'lambdalabs/pokemon-blip-captions'
-#DATASET_NAME = ''
+# DATASET_NAME = ''
 OUTPUT_DIR = 'OFAsd-pokemon-model'
 
 #Image
@@ -26,7 +26,7 @@ MAX_GRAD_NORM = 1
 LR_SCHEDULER = "constant"
 LR_WARMUP_STEPS = 0
 TRAIN_DATA_DIR = ''
-#TRAIN_DATA_DIR = 'train/'
+TRAIN_DATA_DIR = 'train/'
 
 
 #Checkpointing
@@ -41,9 +41,9 @@ RESUME_FROM_CHECKPOINT = ""
 USE_8BIT_ADAM = False 
 
 # DreamBooth Configs
+USE_DREAM_BOOTH = True
 CLASS_DIR = "class_dir"
 CLASS_PROMPT = "class prompt"
 INSTANCE_PROMPT = "instance prompt"
 INSTANCE_DICT = "train/"
-USE_DREAM_BOOTH = True
 NUM_CLASS_IMGS = 5
