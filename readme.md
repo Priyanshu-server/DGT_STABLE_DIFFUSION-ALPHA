@@ -2,12 +2,13 @@
 ## Data Generator Trainer Stable Diffusion (alpha verison)
 ## Version : 0.0.1
 
-### ? functionality  remaining  ? { GENERATE Class_dir data automatically by get_image script }? [ADD only if necessary]
-
-
 ### Inspired By HuggingFace
 ![Hugging Face Image](https://huggingface.co/front/assets/homepage/hugs-mobile.svg)
 
+### COLAB
+> If using colab then don't forget to change the `IS_COLAB` to True in Config.py.
+> Install *colab_requirements* instead of *requirements* to avoid
+> **version conflicts**.
 ### Tokens
 - ADD ACCESS_TOKEN & UNSPLASH_ACCESS_TOKEN in `config.py`
 - If you are using the `predownloaded Dataset | HuggingFace Dataset` then avoid adding `UNSPLASH_ACCESS_TOKEN`
@@ -15,7 +16,7 @@
 
 ## Requirements
 - Data Generation Requirements are inside requirements.txt `pip3 install -r requirements.txt`
-
+- For colab use `colab_requirements.txt`
 ### Config.py
 - Update config.py file for specific changes - 
     - Model Name
@@ -59,15 +60,12 @@
 >   - Provide prompts in text like structure. `Cat\nDog\nPrompt3... etc` 
 - But before exectuion, update config.py file
     - Change value of TRAIN_DATA_DIR = '/data_dir/' and DATASET_NAME = ''
-- Command when downloading pictures from unsplash (Update ACESS TOKEN IN CONFIG.PY)
-    - `python3 app.py -prompt_file prompts.txt -num_imgs 2 -size 128 -data_dir train -site unsplash -unsplash_size raw -verbose False -train False`
 - unsplash_sized = `{"raw","full","regular","small","thumb"}`
-- Command when downloading dataset from Google (No need to provide UNSPLASH ACCESS TOKEN)
-    - `python3 app.py -prompt_file prompts.txt -num_imgs 2 -size 128 -data_dir train -verbose False -train False`
+- Update `data_config.py` file for changes in Data Downloading and Output.
 
 #### Offline Dataset
 - Working with offline dataset require triggering main.py.
-- But before exectuion, update config.py file
+- But before exectuion, update cofig.py file
     - Change value of TRAIN_DATA_DIR = '/data_dir/' and DATASET_NAME = ''
     - Make a file `metadata.json` inside /data_dir/ and inside that file, each line represents a json object of `["file_name","text"]` keys. The model will read files from that `jsonl : File` only.
     - Put your images inside `/data_dir/` with file `metadata.jsonl`
@@ -95,3 +93,18 @@
           --lr_scheduler="constant" \
           --lr_warmup_steps=0 \
           --output_dir=$OUTPUT_DIR`
+
+## DreamBooth
+### Dataset
+- Trigger `app.py` file after changing the `data_config.py` file according to your need.
+- But if you are generating data for dreambooth then update the USE_DREAMBOOTH parameter in `config.py` file. Make it True.
+- If using offline data then just put bunch of images in a directory which will be your instance dir.
+
+### Training
+- Triggering `main.py` file will let you train your dreambooth model.
+- Change Parameters under the section of dreambooth in `config.py`
+- class_dir and class_prompt are only used when you are using `WITH_PRIOR_RESERVATION` to `True`. Class Dir must exists, if it is empty then our Model will take care of it but the directory should exist.
+- Model will look for images in `INSTANCE_DIR`. It should have a bunch of images related to your `INSTANCE_PROMPT` field.
+
+
+# Do not support multiple Prompt training on single drembooth

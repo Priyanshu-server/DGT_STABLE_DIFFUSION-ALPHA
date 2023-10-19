@@ -37,10 +37,10 @@ def gen_accelerator_text_img():
             print("Something Went wrong while installing bitsandbytes")
             print("For more information execute `python -m bitsandbytes`")
 
-    if TRAIN_DATA_DIR == "" and DATASET_NAME != "":
-        accelerator_cmd += f' --dataset_name={DATASET_NAME}'
-    elif DATASET_NAME == "" and TRAIN_DATA_DIR != "":
+    if TRAIN_DATA_DIR != "":
         accelerator_cmd += f' --train_data_dir={TRAIN_DATA_DIR}'
+    elif TRAIN_DATA_DIR == "" and DATASET_NAME != "":
+        accelerator_cmd += f' --dataset_name={DATASET_NAME}'
     else:
         print("Something is wrong in file locations ! Check Readme.md")
         exit(0)

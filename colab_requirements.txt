@@ -1,0 +1,9 @@
+beautifulsoup4
+html5lib
+numpy
+pandas
+Pillow
+requests
+torch
+tqdm
+triton

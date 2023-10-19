@@ -1,11 +1,17 @@
 import os
 from lx_cmd import (install_deps,diffuser_clone,
-                    install_diffuser,set_acc,set_acc__default_precision_fp16)
+                    install_diffuser,set_acc,set_acc__default_precision_fp16,
+                    install_deps_colab)
 from config import *
 
 
 def main():
-    os.system(command=install_deps.cmd)
+    #colab deps without version control otherwise they would conflict
+    if IS_COLAB:
+        os.system(command=install_deps_colab.cmd)
+    else:
+        os.system(command=install_deps.cmd)
+
     from gen_accelerator_cmd import gen_accelerator_text_img,gen_accelerator_dreambooth
     if not os.path.exists("diffusers/"):
         os.system(command=diffuser_clone.cmd)
